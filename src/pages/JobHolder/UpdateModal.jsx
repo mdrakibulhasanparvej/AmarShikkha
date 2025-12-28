@@ -101,7 +101,8 @@ const UpdateModal = ({
                 <option>Industrial Sewing</option>
                 <option>Dressmaking & Tailoring</option>
                 <option>Garments Machine Mechanics</option>
-                <option>Computer Fundamentals</option>
+                <option>Com. Freelancing & sopken Eng.</option>
+                <option>Computer</option>
                 <option>Motorbike Mechanics</option>
                 <option>Spoken English</option>
               </select>

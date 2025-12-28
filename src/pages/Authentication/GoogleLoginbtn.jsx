@@ -12,7 +12,7 @@ const GoogleLoginbtn = () => {
   const handleWithGoogle = () => {
     signInGoogle()
       .then((result) => {
-        console.log(result.user);
+        // console.log(result.user);
 
         //create user in the database
         const userInfo = {
@@ -22,11 +22,11 @@ const GoogleLoginbtn = () => {
         };
 
         axiosSecure.post("/users", userInfo).then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           if (res.data) {
             navigate(locations.state || "/");
             // alert("user created successfully");
-            console.log("user created successfully", res.data);
+            // console.log("user created successfully", res.data);
           }
         });
       })

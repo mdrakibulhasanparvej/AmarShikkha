@@ -145,7 +145,8 @@ const DownloadPDF = () => {
     "Industrial Sewing",
     "Dressmaking & Tailoring",
     "Garments Machine Mechanics",
-    "Computer Fundamentals",
+    "Computer",
+    "Com. Freelancing & sopken Eng.",
     "Motorbike Mechanics",
     "Spoken English",
   ];

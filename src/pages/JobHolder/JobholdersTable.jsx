@@ -10,7 +10,7 @@ const JobholdersTable = ({
   setOpenUpdate,
 }) => {
   return (
-    <div ref={tableRef} className="overflow-x-auto min-h-70vh w-235">
+    <div ref={tableRef} className="overflow-x-auto min-h-70vh max-w-[880px]">
       <table className="table table-md table-pin-rows table-pin-cols">
         {/* head */}
         <thead>
@@ -37,24 +37,27 @@ const JobholdersTable = ({
               <td className="whitespace-nowrap space-x-2">
                 <div className="flex items-center gap-3">
                   <div className="avatar">
-                    <div className="mask mask-squircle h-12 w-12">
-                      <img src={holder.photo_URL} alt={holder.name} />
+                    <div className="h-12 w-12 rounded-xl overflow-hidden">
+                      <img
+                        src={holder.photo_URL}
+                        className="h-full w-full object-cover"
+                        alt="Profile"
+                      />
                     </div>
                   </div>
                   <div>
-                    <div className="font-bold">{holder.name}</div>
-                    <div className="text-sm opacity-80">{holder.gender}</div>
+                    <div className="font-medium">{holder.name}</div>
+                    <div className="text-xs opacity-80">{holder.gender}</div>
                   </div>
                 </div>
               </td>
 
               {/* Job */}
               <td className="whitespace-nowrap space-x-2">
-                {holder.trade}
-                <br />
-                <span className="badge badge-ghost badge-md">
-                  {holder.designation}
-                </span>
+                <div>
+                  <div className="font-medium">{holder.trade}</div>
+                  <div className="text-xs opacity-80">{holder.designation}</div>
+                </div>
               </td>
 
               {/* Workplace */}

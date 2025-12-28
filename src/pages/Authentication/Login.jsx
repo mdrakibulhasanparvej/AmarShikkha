@@ -19,10 +19,10 @@ const Login = () => {
   const password = watch("password");
 
   const handleLoign = (data) => {
-    console.log(data);
+    // console.log(data);
     signInUser(data.email, data.password)
       .then((result) => {
-        console.log(result.user);
+        // console.log(result.user);
         navigate(locations?.state || "/");
       })
       .catch((error) => {

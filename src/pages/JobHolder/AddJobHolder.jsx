@@ -6,7 +6,6 @@ import useAxios from "../../hook/useAxios";
 import { toast } from "react-toastify";
 import LoadingSpinner from "../../component/LoadingSpinner";
 import useAuth from "../../hook/useAuth";
-import UpdateModal from "./UpdateModal";
 import { useWorkplacesWithAutoAddress } from "../../hook/useWorkplacesWithAutoAddress";
 
 const AddJobHolder = () => {
@@ -175,7 +174,8 @@ const AddJobHolder = () => {
               <option>Industrial Sewing</option>
               <option>Dressmaking & Tailoring</option>
               <option>Garments Machine Mechanics</option>
-              <option>Computer Fundamentals</option>
+              <option>Computer</option>
+              <option>Com. Freelancing & sopken Eng.</option>
               <option>Motorbike Mechanics</option>
               <option>Spoken English</option>
             </select>

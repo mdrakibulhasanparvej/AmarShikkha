@@ -43,7 +43,7 @@ const Register = () => {
 
           axiosSecure.post("/users", userInfo).then((res) => {
             if (res.data.insertedId) {
-              console.log("user created successfully");
+              // console.log("user created successfully");
             }
           });
 
