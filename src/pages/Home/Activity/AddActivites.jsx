@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import useAxios from "../../../hook/useAxios";
-import useAuth from "../../../hook/useAuth";
+import useAxios from "../../../hooks/useAxios";
+import useAuth from "../../../hooks/useAuth";
 import Cropper from "react-easy-crop";
-import { getCroppedImg } from "../../../hook/cropImage";
-import LoadingSpinner from "../../../component/LoadingSpinner";
+import { getCroppedImg } from "../../../hooks/cropImage";
+import LoadingSpinner from "../../../components/LoadingSpinner";
 import { toast } from "react-toastify";
 import axios from "axios";
 

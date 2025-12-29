@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import useAxios from "../../../hook/useAxios";
+import useAxios from "../../../hooks/useAxios";
 import GalleryCard from "./GalleryCard";
 import GalleryFilter from "./GalleryFilter";
-import LoadingSpinner from "../../../component/LoadingSpinner";
+import LoadingSpinner from "../../../components/LoadingSpinner";
 
 const categories = [
   "All",

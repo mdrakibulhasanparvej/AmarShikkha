@@ -1,123 +1,118 @@
-import React from "react";
 import { useForm } from "react-hook-form";
-import { Link, useLocation, useNavigate } from "react-router";
-import useAuth from "../../hook/useAuth";
+import { CgArrowRightO } from "react-icons/cg";
+import { FaEnvelope, FaLock } from "react-icons/fa";
+import { Link, useNavigate } from "react-router";
+import Button from "../../components/ui/Button";
+import useAuth from "../../hooks/useAuth";
+import { TiHome } from "react-icons/ti";
+import { toast } from "react-toastify";
 
 const Login = () => {
-  const { signInUser } = useAuth();
-  const locations = useLocation();
-  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
-    reset,
-    watch,
     formState: { errors },
   } = useForm();
+  const { logIn } = useAuth();
+  const navigate = useNavigate();
 
-  const email = watch("email");
-  const password = watch("password");
-
-  const handleLoign = (data) => {
-    // console.log(data);
-    signInUser(data.email, data.password)
-      .then((result) => {
-        // console.log(result.user);
-        navigate(locations?.state || "/");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    reset();
+  const onSubmit = async (data) => {
+    try {
+      await logIn(data.email, data.password);
+      toast.success("Login successfully 🎉", { duration: 1000 });
+      navigate("/");
+    } catch (error) {
+      toast.error("Invalid email or password ❌");
+    }
   };
 
   return (
-    <div className="card-body mx-auto w-96">
-      <h2 className="text-3xl font-bold">Welcome Back</h2>
-      <p>Login with Amar Shikkha</p>
-      <form onSubmit={handleSubmit(handleLoign)}>
-        <fieldset className="fieldset">
-          <label className="label font-bold">Email</label>
-          <input
-            type="email"
-            {...register("email", {
-              required: "Email is required",
-              pattern: {
-                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                message: "Please enter a valid email address",
-              },
-            })}
-            className="input"
-            placeholder="Email"
-          />
-          {errors.email && (
-            <p className="text-red-600 text-sm">{errors.email.message}</p>
-          )}
-          <label className="label font-bold">Password</label>
-          <input
-            type="password"
-            {...register("password", {
-              required: "Password is required",
-              minLength: {
-                value: 6,
-                message: "Password must be at least 8 characters long",
-              },
-              pattern: {
-                value:
-                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-                message:
-                  "Password must include uppercase, lowercase, number, and special character",
-              },
-            })}
-            className="input"
-            placeholder="Password"
-          />
-          {errors.password && (
-            <p className="text-red-600 text-sm">{errors.password.message}</p>
-          )}
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 px-4">
+      <div className="w-full max-w-md bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 sm:p-8">
+        {/* Header */}
+        <h2 className="text-3xl font-bold text-center bg-linear-to-r from-[#6A0B37] to-[#B32346] bg-clip-text text-transparent">
+          Login
+        </h2>
+        <p className="text-center text-sm text-gray-500 dark:text-gray-400 mb-6">
+          Welcome back! Please login to your account
+        </p>
 
-          {/* Live Password strenght */}
-          {password && (
-            <p className="text-xs mt-1 text-gray-600">
-              {password && !/[A-Z]/.test(password)
-                ? "Must include at least one uppercase letter"
-                : password && !/[a-z]/.test(password)
-                  ? "Must include at least one lowercase letter"
-                  : password && !/\d/.test(password)
-                    ? "Must include at least one number"
-                    : password && !/[@$!%*?&]/.test(password)
-                      ? "Must include at least one special character"
-                      : password && password.length < 6
-                        ? "Password must be at least 8 characters"
-                        : password
-                          ? "Strong password"
-                          : ""}
-            </p>
-          )}
+        {/* Form */}
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          {/* Email */}
           <div>
-            <Link to="/forgetPassword" className="link link-hover">
-              Forgot password?
-            </Link>
+            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              Email
+            </label>
+            <div className="relative mt-1">
+              <FaEnvelope className="absolute left-3 top-3 text-gray-400" />
+              <input
+                type="email"
+                placeholder="Enter your email"
+                {...register("email", { required: "Email is required" })}
+                className="w-full pl-10 pr-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500
+                  bg-gray-50 dark:bg-gray-700 border-gray-300 dark:border-gray-600
+                  text-gray-900 dark:text-white"
+              />
+            </div>
+            {errors.email && (
+              <p className="text-xs text-red-500 mt-1">
+                {errors.email.message}
+              </p>
+            )}
           </div>
-          {/* Disable login button when empty */}
-          <button
-            className="btn bg-[#CAEB66] hover:bg-[#89a72c] mt-4"
-            disabled={!email || !password}
-          >
-            Login
-          </button>
 
-          <div className="flex flex-col items-start">
-            <p>
-              Don't have any account?{" "}
-              <Link to="/auth/register" className="link link-hover">
-                {" "}
-                Register
-              </Link>
-            </p>
+          {/* Password */}
+          <div>
+            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              Password
+            </label>
+            <div className="relative mt-1">
+              <FaLock className="absolute left-3 top-3 text-gray-400" />
+              <input
+                type="password"
+                placeholder="Enter your password"
+                {...register("password", { required: "Password is required" })}
+                className="w-full pl-10 pr-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500
+                  bg-gray-50 dark:bg-gray-700 border-gray-300 dark:border-gray-600
+                  text-gray-900 dark:text-white"
+              />
+            </div>
+            {errors.password && (
+              <p className="text-xs text-red-500 mt-1">
+                {errors.password.message}
+              </p>
+            )}
           </div>
-        </fieldset>
-      </form>
+
+          {/* Submit */}
+          <Button
+            size={true}
+            type="submit"
+            label="Login"
+            iconRight={CgArrowRightO}
+          />
+        </form>
+
+        {/* Footer */}
+        <p className="text-center text-sm text-gray-600 dark:text-gray-400 mt-6">
+          Don't have an account?{" "}
+          <Link
+            to="/auth/register"
+            className="text-red-600 hover:underline font-medium"
+          >
+            Register
+          </Link>
+        </p>
+        <div className="text-center flex items-center justify-center mt-8">
+          <Link
+            to="/"
+            className="text-gray-700 dark:text-gray-300 hover:text-red-500 dark:hover:text-red-400 transition"
+          >
+            <TiHome size={30} />
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };

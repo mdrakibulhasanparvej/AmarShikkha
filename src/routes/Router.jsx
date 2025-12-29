@@ -1,125 +1,102 @@
 import { createBrowserRouter } from "react-router";
 import MainLayout from "../layout/MainLayout";
-import Dashboard from "../layout/Dashboard";
-import AddJobHolder from "../pages/JobHolder/AddJobHolder";
-import Home from "../pages/Home/Home";
-import OverView from "../pages/overview/OverView";
-import AddWorkplace from "../pages/workplace/AddWorkplace";
+import DashboardLayout from "../layout/DashboardLayout";
 import AuthLayout from "../layout/AuthLayout";
-import Login from "../pages/Authentication/Login";
-import Register from "../pages/Authentication/Register";
-import PrivateRoutes from "./PrivateRoutes";
-import AllJobholders from "../pages/JobHolder/AllJobholders";
-import DownloadPDF from "../pages/JobHolder/DownloadPDF";
-import AllWorkplace from "../pages/workplace/AllWorkplace";
+
+import Home from "../pages/Home/Home";
+import OverView from "../pages/Dashboard/overview/OverView";
+
+import AddJobHolder from "../pages/Dashboard/JobHolder/AddJobHolder";
+import AllJobholders from "../pages/Dashboard/JobHolder/AllJobholders";
+import DownloadPDF from "../pages/Dashboard/JobHolder/DownloadPDF";
+
+import AddWorkplace from "../pages/Dashboard/workplace/AddWorkplace";
+import AllWorkplace from "../pages/Dashboard/workplace/AllWorkplace";
+
 import AllSliderImage from "../pages/Home/Swiper/AllSliderImage";
 import AddBannerSlider from "../pages/Home/Swiper/AddBannerSlider";
+
 import AllActivities from "../pages/Home/Activity/AllActivities";
 import AddActivites from "../pages/Home/Activity/AddActivites";
+
 import AllNewsGallery from "../pages/Home/NewsGallery/AllNewsGallery";
 import AddNews from "../pages/Home/NewsGallery/AddNews";
+
 import AllImageGallery from "../pages/Home/PhotoGallery/AllImageGallery";
 import AddImage from "../pages/Home/PhotoGallery/AddImage";
-import AllStudents from "../pages/Students/AllStudents";
-import AddStudent from "../pages/Students/AddStudent";
+
+import AllStudents from "../pages/Dashboard/Students/AllStudents";
+import AddStudent from "../pages/Dashboard/Students/AddStudent";
+
+import Login from "../pages/Authentication/Login";
+import Register from "../pages/Authentication/Register";
+
+import PrivateRoutes from "./PrivateRoutes";
+import Statistics from "../pages/Dashboard/common/Statistics";
+import Profile from "../pages/Dashboard/common/Profile";
+import Allusers from "../pages/Dashboard/Students/AllUser/Allusers";
+import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    Component: MainLayout,
+    element: <MainLayout />, // ✅ FIX
     children: [
       {
         index: true,
-        Component: Home,
+        element: <Home />, // ✅ FIX
       },
     ],
   },
+
   {
-    path: "dashboard",
+    path: "/dashboard",
     element: (
       <PrivateRoutes>
-        <Dashboard />
+        <DashboardLayout />
       </PrivateRoutes>
     ),
     children: [
       {
-        path: "overview",
-        Component: OverView,
+        index: true,
+        element: <Statistics />,
       },
       {
-        path: "all-banner",
-        Component: AllSliderImage,
+        path: "all-users",
+        element: (
+          <AdminRoute>
+            <Allusers />
+          </AdminRoute>
+        ),
       },
       {
-        path: "add-banner-slider",
-        Component: AddBannerSlider,
+        path: "profile",
+        element: <Profile />,
       },
-      {
-        path: "all-activites",
-        Component: AllActivities,
-      },
-      {
-        path: "add-activites",
-        Component: AddActivites,
-      },
-      {
-        path: "all-news-gallery",
-        Component: AllNewsGallery,
-      },
-      {
-        path: "add-news",
-        Component: AddNews,
-      },
-      {
-        path: "all-Image-gallery",
-        Component: AllImageGallery,
-      },
-      {
-        path: "add-Image",
-        Component: AddImage,
-      },
-      {
-        path: "all-students",
-        Component: AllStudents,
-      },
-      {
-        path: "add-student",
-        Component: AddStudent,
-      },
-      {
-        path: "add-job-holder",
-        Component: AddJobHolder,
-      },
-      {
-        path: "all-job-holder",
-        Component: AllJobholders,
-      },
-      {
-        path: "downloadPDF",
-        Component: DownloadPDF,
-      },
-      {
-        path: "add-workplace",
-        Component: AddWorkplace,
-      },
-      {
-        path: "all-workplace",
-        Component: AllWorkplace,
-      },
+      { path: "all-banner", element: <AllSliderImage /> },
+      { path: "add-banner-slider", element: <AddBannerSlider /> },
+      { path: "all-activites", element: <AllActivities /> },
+      { path: "add-activites", element: <AddActivites /> },
+      { path: "all-news-gallery", element: <AllNewsGallery /> },
+      { path: "add-news", element: <AddNews /> },
+      { path: "all-image-gallery", element: <AllImageGallery /> },
+      { path: "add-image", element: <AddImage /> },
+      { path: "admission-request", element: <AllStudents /> },
+      { path: "create-admision-request", element: <AddStudent /> },
+      { path: "add-job-holder", element: <AddJobHolder /> },
+      { path: "all-job-holder", element: <AllJobholders /> },
+      { path: "downloadPDF", element: <DownloadPDF /> },
+      { path: "add-workplace", element: <AddWorkplace /> },
+      { path: "all-workplace", element: <AllWorkplace /> },
     ],
   },
+
   {
-    path: "auth",
-    Component: AuthLayout,
+    path: "/auth",
+    element: <AuthLayout />, // ✅ FIX
     children: [
-      {
-        path: "login",
-        Component: Login,
-      },
-      {
-        path: "register",
-        Component: Register,
-      },
+      { path: "login", element: <Login /> },
+      { path: "register", element: <Register /> },
     ],
   },
 ]);

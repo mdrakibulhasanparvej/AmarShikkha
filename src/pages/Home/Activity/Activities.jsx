@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import useAxios from "../../../hook/useAxios";
+import useAxios from "../../../hooks/useAxios";
 import ActivityCard from "./ActivityCard";
 
 const Activities = () => {

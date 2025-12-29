@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import useAxios from "../../../hook/useAxios";
+import useAxios from "../../../hooks/useAxios";
 import { toast } from "react-toastify";
-import LoadingSpinner from "../../../component/LoadingSpinner";
+import LoadingSpinner from "../../../components/LoadingSpinner";
 
 export default function AllImageGallery() {
   const axiosSecure = useAxios();

@@ -3,11 +3,11 @@ import Cropper from "react-easy-crop";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import useAxios from "../../../hook/useAxios";
-import useAuth from "../../../hook/useAuth";
-import LoadingSpinner from "../../../component/LoadingSpinner";
+import useAxios from "../../../hooks/useAxios";
+import useAuth from "../../../hooks/useAuth";
+import LoadingSpinner from "../../../components/LoadingSpinner";
 import { toast } from "react-toastify";
-import { getCroppedImg } from "../../../hook/cropImage";
+import { getCroppedImg } from "../../../hooks/cropImage";
 
 const AddBannerSlider = () => {
   const { register, watch, reset } = useForm();

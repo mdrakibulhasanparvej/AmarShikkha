@@ -1,8 +1,8 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import useAxios from "../../../hook/useAxios";
+import useAxios from "../../../hooks/useAxios";
 import NewsGalleryCard from "./NewsGalleryCard";
-import LoadingSpinner from "../../../component/LoadingSpinner";
+import LoadingSpinner from "../../../components/LoadingSpinner";
 
 const NewsGallery = () => {
   const axiosSecure = useAxios();
